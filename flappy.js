@@ -1,130 +1,129 @@
-function novoElemento(tagName, className) {
+function newElement(tagName, className) {
     const elem = document.createElement(tagName)
     elem.className = className
     return elem
 }
 
-function Barreira(reversa = false) {
-    this.elemento = novoElemento('div', 'barreira')
+function Barrier(reverse = false) {
+    this.element = newElement('div', 'barrier')
 
-    const borda = novoElemento('div', 'borda')
-    const corpo = novoElemento('div', 'corpo')
-    this.elemento.appendChild(reversa ? corpo : borda)
-    this.elemento.appendChild(reversa ? borda : corpo)
+    const border = newElement('div', 'border')
+    const body = newElement('div', 'body')
+    this.element.appendChild(reverse ? body : border)
+    this.element.appendChild(reverse ? border : body)
 
-    this.setAltura = altura => corpo.style.height = `${altura}px`
+    this.setHeight = height => body.style.height = `${height}px`
 }
 
-// const b = new Barreira(true)
-// b.setAltura(300)
-// document.querySelector('[wm-flappy]').appendChild(b.elemento)
+// const b = new Barrier(true)
+// b.setHeight(300)
+// document.querySelector('[wm-flappy]').appendChild(b.element)
 
-function ParDeBarreiras(altura, abertura, x) {
-    this.elemento = novoElemento('div', 'par-de-barreiras')
+function pairOfBarrier(height, opening, x) {
+    this.element = newElement('div', 'pair-of-barriers')
 
-    this.superior = new Barreira(true)
-    this.inferior = new Barreira(false)
+    this.higher = new Barrier(true)
+    this.bottom = new Barrier(false)
 
-    this.elemento.appendChild(this.superior.elemento)
-    this.elemento.appendChild(this.inferior.elemento)
+    this.element.appendChild(this.higher.element)
+    this.element.appendChild(this.bottom.element)
 
-    this.sortearAbertura = () => {
-        const alturaSuperior = Math.random() * (altura - abertura)
-        const alturaInferior = altura - abertura - alturaSuperior
-        this.superior.setAltura(alturaSuperior)
-        this.inferior.setAltura(alturaInferior)
+    this.drawOpening = () => {
+        const heightHigher = Math.random() * (height - opening)
+        const heightBottom = height - opening - heightHigher
+        this.higher.setHeight(heightHigher)
+        this.bottom.setHeight(heightBottom)
     }
 
-    this.getX = () => parseInt(this.elemento.style.left.split('px')[0])
-    this.setX = x => this.elemento.style.left = `${x}px`
-    this.getLargura = () => this.elemento.clientWidth
+    this.getX = () => parseInt(this.element.style.left.split('px')[0])
+    this.setX = x => this.element.style.left = `${x}px`
+    this.getWidth = () => this.element.clientWidth
 
-    this.sortearAbertura()
+    this.drawOpening()
     this.setX(x)
 }
 
-// const b = new ParDeBarreiras(700, 200, 800)
-// document.querySelector('[wm-flappy]').appendChild(b.elemento)
+// const b = new pairOfBarrier(700, 200, 800)
+// document.querySelector('[wm-flappy]').appendChild(b.element)
 
-function Barreiras(altura, largura, abertura, espaco, notificarPonto) {
-    this.pares = [
-        new ParDeBarreiras(altura, abertura, largura),
-        new ParDeBarreiras(altura, abertura, largura + espaco),
-        new ParDeBarreiras(altura, abertura, largura + espaco * 2),
-        new ParDeBarreiras(altura, abertura, largura + espaco * 3)
+function Barriers(height, width, opening, space, notificarPonto) {
+    this.pairs = [
+        new pairOfBarrier(height, opening, width),
+        new pairOfBarrier(height, opening, width + space),
+        new pairOfBarrier(height, opening, width + space * 2),
+        new pairOfBarrier(height, opening, width + space * 3)
     ]
 
-    const deslocamento = 3
-    this.animar = () => {
-        this.pares.forEach(par => {
-            par.setX(par.getX() - deslocamento)
+    const move = 3
+    this.animate = () => {
+        this.pairs.forEach(par => {
+            par.setX(par.getX() - move)
 
-            // quando o elemento sair da área do jogo
-            if (par.getX() < -par.getLargura()) {
-                par.setX(par.getX() + espaco * this.pares.length)
-                par.sortearAbertura()
+            // When element get off game area
+            if (par.getX() < -par.getWidth()) {
+                par.setX(par.getX() + space * this.pairs.length)
+                par.drawOpening()
             }
 
-            const meio = largura / 2
-            const cruzouOMeio = par.getX() + deslocamento >= meio
-                && par.getX() < meio
-            if(cruzouOMeio) notificarPonto()
+            const middle = width / 2
+            const crossedMiddle = par.getX() + move >= middle
+                && par.getX() < middle
+            if(crossedMiddle) notificarPonto()
         })
     }
 }
 
-function Passaro(alturaJogo) {
-    let voando = false
 
-    this.elemento = novoElemento('img', 'passaro')
-    this.elemento.src = '  passaro.png'
+function Bird(heigthGame) {
+    let fly = false
 
-    this.getY = () => parseInt(this.elemento.style.bottom.split('px')[0])
-    this.setY = y => this.elemento.style.bottom = `${y}px`
+    this.element = newElement('img', 'bird')
+    this.element.src = 'bird.png'
 
-    window.onkeydown = e => voando = true
-    window.onkeyup = e => voando = false
+    this.getY = () => parseInt(this.element.style.bottom.split('px')[0])
+    this.setY = y => this.element.style.bottom = `${y}px`
 
-    this.animar = () => {
-        const novoY = this.getY() + (voando ? 8 : -5)
-        const alturaMaxima = alturaJogo - this.elemento.clientHeight
+    window.onkeydown = e => fly = true
+    window.onkeyup = e => fly = false
 
-        if (novoY <= 0) {
+    this.animate = () => {
+        const newY = this.getY() + (fly ? 8 : -5)
+        const heightMaxima = heigthGame - this.element.clientHeight
+
+        if (newY <= 0) {
             this.setY(0)
-        } else if (novoY >= alturaMaxima) {
-            this.setY(alturaMaxima)
+        } else if (newY >= heightMaxima) {
+            this.setY(heightMaxima)
         } else {
-            this.setY(novoY)
+            this.setY(newY)
         }
     }
 
-    this.setY(alturaJogo / 2)
+    this.setY(heigthGame / 2)
 }
 
-
-
-function Progresso() {
-    this.elemento = novoElemento('span', 'progresso')
-    this.atualizarPontos = pontos => {
-        this.elemento.innerHTML = pontos
+function Progress() {
+    this.element = newElement('span', 'progress')
+    this.updatePoints = points => {
+        this.element.innerHTML = points
     }
-    this.atualizarPontos(0)
+    this.updatePoints(0)
 }
 
-// const barreiras = new Barreiras(700, 1200, 200, 400)
-// const passaro = new Passaro(700)
-// const areaDoJogo = document.querySelector('[wm-flappy]')
-// areaDoJogo.appendChild(passaro.elemento)
-// areaDoJogo.appendChild(new Progresso().elemento)
-// barreiras.pares.forEach(par => areaDoJogo.appendChild(par.elemento))
+// const Barriers = new Barriers(700, 1200, 200, 400)
+// const bird = new Bird(700)
+// const gameArea = document.querySelector('[wm-flappy]')
+// gameArea.appendChild(bird.element)
+// gameArea.appendChild(new Progress().element)
+// Barriers.pairs.forEach(par => gameArea.appendChild(par.element))
 // setInterval(() => {
-//     barreiras.animar()
-//     passaro.animar()
+//     Barriers.animate()
+//     bird.animate()
 // }, 20)
 
-function estaoSobrepostos(elementoA, elementoB) {
-    const a = elementoA.getBoundingClientRect()
-    const b = elementoB.getBoundingClientRect()
+function overlapping(elementA, elementB) {
+    const a = elementA.getBoundingClientRect()
+    const b = elementB.getBoundingClientRect()
 
     const horizontal = a.left + a.width >= b.left
         && b.left + b.width >= a.left
@@ -133,43 +132,43 @@ function estaoSobrepostos(elementoA, elementoB) {
     return horizontal && vertical
 }
 
-function colidiu(passaro, barreiras) {
-    let colidiu = false
-    barreiras.pares.forEach(parDeBarreiras => {
-        if (!colidiu) {
-            const superior = parDeBarreiras.superior.elemento
-            const inferior = parDeBarreiras.inferior.elemento
-            colidiu = estaoSobrepostos(passaro.elemento, superior)
-                || estaoSobrepostos(passaro.elemento, inferior)
+function colide(bird, bairrers) {
+    let colide = false
+    bairrers.pairs.forEach(pairOfBarrier => {
+        if (!colide) {
+            const higher = pairOfBarrier.higher.element
+            const bottom = pairOfBarrier.bottom.element
+            colide = overlapping(bird.element, higher)
+                || overlapping(bird.element, bottom)
         }
     })
-    return colidiu
+    return colide
 }
 
 function FlappyBird() {
-    let pontos = 0
+    let points = 0
 
-    const areaDoJogo = document.querySelector('[wm-flappy]')
-    const altura = areaDoJogo.clientHeight
-    const largura = areaDoJogo.clientWidth
+    const gameArea = document.querySelector('[wm-flappy]')
+    const height = gameArea.clientHeight
+    const width = gameArea.clientWidth
 
-    const progresso = new Progresso()
-    const barreiras = new Barreiras(altura, largura, 200, 400,
-        () => progresso.atualizarPontos(++pontos))
-    const passaro = new Passaro(altura)
+    const progress = new Progress()
+    const bairrers = new Barriers(height, width, 200, 400,
+        () => progress.updatePoints(++points))
+    const bird = new Bird(height)
 
-    areaDoJogo.appendChild(progresso.elemento)
-    areaDoJogo.appendChild(passaro.elemento)
-    barreiras.pares.forEach(par => areaDoJogo.appendChild(par.elemento))
+    gameArea.appendChild(progress.element)
+    gameArea.appendChild(bird.element)
+    bairrers.pairs.forEach(par => gameArea.appendChild(par.element))
 
     this.start = () => {
-        // loop do jogo
-        const temporizador = setInterval(() => {
-            barreiras.animar()
-            passaro.animar()
+        // Game Loop
+        const timer = setInterval(() => {
+            bairrers.animate()
+            bird.animate()
 
-            if (colidiu(passaro, barreiras)) {
-                clearInterval(temporizador)
+            if (colide(bird, bairrers)) {
+                clearInterval(timer)
             }
         }, 20)
     }
