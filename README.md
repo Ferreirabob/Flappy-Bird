@@ -1,4 +1,4 @@
-# Flappy-Bird-Clone
+# flappy-bird-clone
 Projeto realizado segundo as aulas do curso da cod3r na Udemy, treinamento com JavaScript, CSS e HTML.
 
 Como iniciar o projeto:
