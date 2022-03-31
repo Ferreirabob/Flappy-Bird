@@ -2,12 +2,20 @@
 
 Create Flappy Bird With JavaScript
 
-![image](https://user-images.githubusercontent.com/75916419/161027868-09bcc8a1-4511-45d3-ae92-f2daf8a066de.png)
-
-
-
 This project was a form of exercise to fix javascript learning!
 Project Dificult: Beginner
+
+#Preview
+
+- Game Start
+![image](https://user-images.githubusercontent.com/75916419/161027868-09bcc8a1-4511-45d3-ae92-f2daf8a066de.png)
+
+- Playing Game
+![image](https://user-images.githubusercontent.com/75916419/161031041-9f082b8e-d2d5-424d-9b4f-2e4d2c11679e.png)
+
+- Game Over
+![image](https://user-images.githubusercontent.com/75916419/161028894-b198644a-1113-4fb2-9d62-575b3248c075.png)
+
 
 # How to Execute:
 You can download all the project here and open on Visual Studio Code
