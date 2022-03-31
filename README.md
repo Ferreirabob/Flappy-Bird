@@ -8,3 +8,5 @@ Create Flappy Bird With JavaScript
 This project was a form of exercise to fix javascript learning!
 Project Dificult: Beginner
 
+<h1>How to Execute:</h1>
+You can download all the project folder and execute "game.html" with live server extesion on visual code.
