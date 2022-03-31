@@ -9,7 +9,7 @@ Project Dificult: Beginner
 
 - Game Start
 
-![image](https://user-images.githubusercontent.com/75916419/161027868-09bcc8a1-4511-45d3-ae92-f2daf8a066de.png)
+![image](https://user-images.githubusercontent.com/75916419/161031588-464cb6f1-0f80-426a-8487-de3f5755fe65.png)
 
 
 - Playing Game
@@ -19,7 +19,7 @@ Project Dificult: Beginner
 
 - Game Over
 
-![image](https://user-images.githubusercontent.com/75916419/161028894-b198644a-1113-4fb2-9d62-575b3248c075.png)
+![image](https://user-images.githubusercontent.com/75916419/161031719-97192a64-a9f1-4eef-a14b-071860b0fc0e.png)
 
 
 # How to Execute:
