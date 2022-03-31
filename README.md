@@ -8,14 +8,17 @@ Project Dificult: Beginner
 # Preview
 
 - Game Start
+
 ![image](https://user-images.githubusercontent.com/75916419/161027868-09bcc8a1-4511-45d3-ae92-f2daf8a066de.png)
 
 
 - Playing Game
+
 ![image](https://user-images.githubusercontent.com/75916419/161031302-e6024485-a0bb-4767-aa7e-ea875f908d61.png)
 
 
 - Game Over
+
 ![image](https://user-images.githubusercontent.com/75916419/161028894-b198644a-1113-4fb2-9d62-575b3248c075.png)
 
 
