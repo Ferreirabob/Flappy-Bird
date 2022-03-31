@@ -1,8 +1,5 @@
 # flappy-bird-clone
 
-Project carried out according to cod3r course classes on Udemy, training with JavaScript, CSS and HTML.
+Create Flappy Bird With JavaScript
 
-How to start the project:
-Start 'flappy.html' with the Live Server of visual studio code, if you don't have this option you can install the extension, the "game" will open in the browser;
-Press any key to enter and if you lose, refresh the page for a new game.
-Updates coming soon!
+![image](https://user-images.githubusercontent.com/75916419/161023514-d6b7f7c7-efc4-47ae-b356-ec25f311f221.png)
