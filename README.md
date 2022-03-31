@@ -24,3 +24,6 @@ execute "index.html" with live server extesion on visual code.
 if you don't have that extension, I recomend to install.
 
 ![image](https://user-images.githubusercontent.com/75916419/161026514-17a0fc2b-ac14-48fe-bbac-501f1b1a9285.png)
+
+
+Or, you can just click here and have some fun!
