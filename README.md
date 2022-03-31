@@ -42,4 +42,4 @@ if you don't have that extension, I recomend to install.
 
 Or you can just click on the link bellow and have some fun!
 
-https://Ferreirabob.github.io/Flappy-Bird/
+https://ferreirabob.github.io/Flappy-Bird/
