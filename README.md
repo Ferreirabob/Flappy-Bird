@@ -2,7 +2,8 @@
 
 Create Flappy Bird With JavaScript
 
-![image](https://user-images.githubusercontent.com/75916419/161027624-aeacd136-a0b5-494a-8712-bf13ee80ea9a.png)
+![image](https://user-images.githubusercontent.com/75916419/161027868-09bcc8a1-4511-45d3-ae92-f2daf8a066de.png)
+
 
 
 This project was a form of exercise to fix javascript learning!
